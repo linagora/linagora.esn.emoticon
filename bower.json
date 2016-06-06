@@ -1,0 +1,25 @@
+{
+  "name": "linagora.esn.emoticon",
+  "description": "Emoticon support for the ESN",
+  "main": "index.js",
+  "authors": [
+    "Linagora folks <dev@linagora.com>"
+  ],
+  "license": "AGPLv3",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "frontend/components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular": "1.3.16",
+    "chai": "^3.5.0",
+    "angular-mocks": "1.3.16",
+    "lodash": "^4.13.1",
+    "jquery": "^2.2.4"
+  }
+}
