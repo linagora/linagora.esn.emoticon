@@ -9,7 +9,10 @@
   "author": "Linagora folks <dev@linagora.com>",
   "license": "AGPLv3",
   "dependencies": {
-    "glob": "^7.0.3"
+    "awesome-module": "^1.0.0",
+    "express": "^4.2.0",
+    "glob": "^7.0.3",
+    "glob-all": "^3.0.3"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
