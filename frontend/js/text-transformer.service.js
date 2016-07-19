@@ -3,7 +3,7 @@
 
   angular.module('linagora.esn.emoticon').factory('esnEmoticonTextTransformer', esnEmoticonTextTransformer);
 
-  function esnEmoticonTextTransformer(esnEmoticonList) {
+  function esnEmoticonTextTransformer(esnEmoticonRegistry) {
     return handleEmoticons;
 
     // courtesy of MatterMost https://github.com/mattermost/platform/blob/master/webapp/utils/emoticons.jsx
@@ -15,8 +15,8 @@
       };
 
       function replaceEmoticon(fullMatch, name, shortName) {
-        if (esnEmoticonList.indexOf(shortName) >= 0) {
-          return replaceFn(name, shortName);
+        if (esnEmoticonRegistry.get(shortName)) {
+          return replaceFn(name, esnEmoticonRegistry.get(shortName).shortName);
         }
 
         return fullMatch;

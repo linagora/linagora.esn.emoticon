@@ -1,9 +1,10 @@
-/* global chai: false */
+/* global chai: false, sinon: false */
+
 var expect = chai.expect;
 
 describe('The esnEmoticon directive', function() {
   'use strict';
-  var element, scope, $compile, esnEmoticonConstants;
+  var element, scope, $compile, esnEmoticonRegistryMock;
 
   function compileDirective(emoticonId) {
     var html = '<esn-emoticon emoticon="' + emoticonId + '"></esn-emoticon>';
@@ -13,13 +14,19 @@ describe('The esnEmoticon directive', function() {
   }
 
   beforeEach(function() {
+    esnEmoticonRegistryMock = {
+      addCollection: function() {}
+    };
+
     angular.mock.module('jadeTemplates');
     angular.mock.module('linagora.esn.emoticon');
+    angular.mock.module(function($provide) {
+      $provide.value('esnEmoticonRegistry', esnEmoticonRegistryMock);
+    });
 
-    inject(function(_$compile_, _$rootScope_,  _esnEmoticonConstants_) {
+    inject(function(_$compile_, _$rootScope_) {
       scope = _$rootScope_.$new();
       $compile = _$compile_;
-      esnEmoticonConstants = _esnEmoticonConstants_;
     });
   });
 
@@ -32,8 +39,11 @@ describe('The esnEmoticon directive', function() {
   });
 
   it('should send back the img template for the emoticon', function() {
-    compileDirective('smiley');
-    var lnk = esnEmoticonConstants.BASE_PATH + 'smiley' + esnEmoticonConstants.SUFFIX;
+    var emoticon = 'smiley';
+    var lnk = '/foo/bar/baz.png';
+
+    esnEmoticonRegistryMock.getEmoticonURI = sinon.stub().returns(lnk);
+    compileDirective(emoticon);
 
     expect(element).to.have.length(1);
 
@@ -41,7 +51,8 @@ describe('The esnEmoticon directive', function() {
 
     expect(htmlElement.nodeName).to.equal('IMG');
     expect(htmlElement.attributes['ng-src'].nodeValue).to.equal(lnk);
-    expect(htmlElement.attributes.title.nodeValue).to.equal('smiley');
+    expect(htmlElement.attributes.title.nodeValue).to.equal(emoticon);
+    expect(esnEmoticonRegistryMock.getEmoticonURI).to.have.been.calledWith(emoticon);
   });
 
 });

@@ -1,10 +1,8 @@
-
-
 (function() {
   'use strict';
   angular.module('linagora.esn.emoticon').directive('esnEmoticon', esnEmoticon);
 
-  function esnEmoticon(esnEmoticonConstants) {
+  function esnEmoticon(esnEmoticonRegistry) {
     return {
       templateUrl: '/linagora.esn.emoticon/views/emoticon.html',
       scope: {
@@ -21,7 +19,7 @@
       } else {
         scope.emoticon = attrs.emoticon;
       }
-      scope.emoticonImage = esnEmoticonConstants.BASE_PATH + scope.emoticon + esnEmoticonConstants.SUFFIX;
+      scope.emoticonImage = esnEmoticonRegistry.getEmoticonURI(scope.emoticon);
     }
   }
 })();
