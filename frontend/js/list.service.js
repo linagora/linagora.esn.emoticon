@@ -4,7 +4,7 @@
   angular.module('linagora.esn.emoticon').factory('esnEmoticonList', esnEmoticonList);
 
   function esnEmoticonList() {
-    return '+1,-1,100,1234,8ball,a,ab,abc,abcd,accept,aerial_tramway,airplane,alarm_clock,alien,ambulance,anchor,angel,' +
+    return ('+1,-1,100,1234,8ball,a,ab,abc,abcd,accept,aerial_tramway,airplane,alarm_clock,alien,ambulance,anchor,angel,' +
     'anger,angry,anguished,ant,apple,aquarius,aries,arrow_backward,arrow_double_down,arrow_double_up,arrow_down,' +
     'arrow_down_small,arrow_forward,arrow_heading_down,arrow_heading_up,arrow_left,arrow_lower_left,' +
     'arrow_lower_right,arrow_right,arrow_right_hook,arrow_up,arrow_up_down,arrow_up_small,arrow_upper_left,' +
@@ -87,6 +87,6 @@
     'water_buffalo,watermelon,wave,wavy_dash,waxing_crescent_moon,waxing_gibbous_moon,wc,weary,wedding,whale,whale2,' +
     'wheelchair,white_check_mark,white_circle,white_flower,white_large_square,white_medium_small_square,' +
     'white_medium_square,white_small_square,white_square_button,wind_chime,wine_glass,wink,wolf,woman,' +
-    'womans_clothes,womans_hat,womens,worried,wrench,x,yellow_heart,yen,yum,zap,zero,zzz'.split(',');
+    'womans_clothes,womans_hat,womens,worried,wrench,x,yellow_heart,yen,yum,zap,zero,zzz').split(',');
   }
 })();

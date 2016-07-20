@@ -9,6 +9,8 @@ module.exports = function(config) {
       'frontend/components/jquery/dist/jquery.min.js',
       'frontend/components/angular/angular.js',
       'frontend/components/angular-mocks/angular-mocks.js',
+      'frontend/components/sinon-chai/lib/sinon-chai.js',
+      'frontend/components/sinon-1.15.4/index.js',
       'frontend/js/**/*.module.js',
       'frontend/js/**/*.js',
       'frontend/**/*.jade'

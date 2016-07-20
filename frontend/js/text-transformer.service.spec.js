@@ -1,18 +1,31 @@
-/* global chai: false */
+/* global chai: false, sinon: false */
 var expect = chai.expect;
 
 describe('The esnEmoticonTextTransformer service', function() {
   'use strict';
 
-  var esnEmoticonTextTransformer;
+  var esnEmoticonTextTransformer, esnEmoticonRegistryMock;
 
   beforeEach(function() {
+    esnEmoticonRegistryMock = {
+      addCollection: function() {},
+      get: function() {},
+      getEmoticonURI: function() {}
+    };
     angular.mock.module('linagora.esn.emoticon');
+    angular.mock.module(function($provide) {
+      $provide.value('esnEmoticonRegistry', esnEmoticonRegistryMock);
+    });
     inject(function(_esnEmoticonTextTransformer_) {
       esnEmoticonTextTransformer = _esnEmoticonTextTransformer_;
     });
   });
 
+  beforeEach(function() {
+    esnEmoticonRegistryMock.get = sinon.stub();
+    esnEmoticonRegistryMock.get.withArgs('+1').returns({shortName: '+1'});
+    esnEmoticonRegistryMock.get.withArgs('smiley').returns({shortName: 'smiley'});
+  });
 
   it('should return an object', function() {
     expect(esnEmoticonTextTransformer).to.be.a('function');
@@ -40,12 +53,16 @@ describe('The esnEmoticonTextTransformer service', function() {
   });
 
   it('should not replace if the emoticon code is unknown', function() {
+    esnEmoticonRegistryMock.get = sinon.stub();
+    esnEmoticonRegistryMock.get.withArgs(':linagora:').returns();
+
     var inputString = 'text :linagora: text';
     var expected = inputString;
 
     var outputString = esnEmoticonTextTransformer(inputString);
 
     expect(outputString).to.equal(expected);
+    expect(esnEmoticonRegistryMock.get).to.have.been.calledOnce;
   });
 
 });
