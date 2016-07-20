@@ -9,6 +9,7 @@
       add: add,
       addCollection: addCollection,
       get: get,
+      getShortNames: getShortNames,
       getEmoticonURI: getEmoticonURI
     };
 
@@ -34,6 +35,10 @@
       var emoticon = get(shortName);
 
       return emoticon.path + emoticon.shortName + emoticon.suffix;
+    }
+
+    function getShortNames() {
+      return Object.keys(emoticons);
     }
   }
 })();

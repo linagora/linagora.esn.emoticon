@@ -31,6 +31,18 @@ describe('The esnEmoticon service', function() {
       expect(esnEmoticonRegistry.get('smile')).to.exist;
     });
 
+    it('should return an array of the registered shortnames', function() {
+      var collection = {
+        path: '/emoticons/',
+        suffix: '.png',
+        shortNames: ['+1', 'smile']
+      };
+
+      esnEmoticonRegistry.addCollection(collection);
+
+      expect(esnEmoticonRegistry.getShortNames()).to.deep.equal(collection.shortNames);
+    });
+
     it('should return a registered emoticon', function() {
       var shortName = '+1';
       var emoticon = {
