@@ -40,6 +40,24 @@ describe('The esnEmoticonTextTransformer service', function() {
     expect(outputString).to.equal(expected);
   });
 
+  it('should replace smileys even if there stuck', function() {
+    var inputString = ':+1::smiley::+1:';
+    var expected = '<esn-emoticon emoticon="+1"></esn-emoticon><esn-emoticon emoticon="smiley"></esn-emoticon><esn-emoticon emoticon="+1"></esn-emoticon>';
+
+    var outputString = esnEmoticonTextTransformer(inputString);
+
+    expect(outputString).to.equal(expected);
+  });
+
+  it('should replace smiley even if it is stuck with an other word', function() {
+    var inputString = ':+1:lut';
+    var expected = '<esn-emoticon emoticon="+1"></esn-emoticon>lut';
+
+    var outputString = esnEmoticonTextTransformer(inputString);
+
+    expect(outputString).to.equal(expected);
+  });
+
   it('should support a replacement callback in second argument', function() {
     var inputString = ':+1: text :smiley: :+1:';
     var replaceFn = function(fullMatch, name) {

@@ -22,7 +22,7 @@
         return fullMatch;
       }
 
-      output = output.replace(/(:([a-zA-Z0-9_+-]+):)(?=$|\s)/g, replaceEmoticon);
+      output = output.replace(/(:([a-zA-Z0-9_+-]+):)/g, replaceEmoticon);
 
       return output;
     }
