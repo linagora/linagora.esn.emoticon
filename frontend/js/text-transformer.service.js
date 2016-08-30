@@ -10,6 +10,10 @@
     function handleEmoticons(text, replaceFn) {
       var output = text;
 
+      if (!output) {
+        return output;
+      }
+
       replaceFn = replaceFn || function replaceEmoticonWithDirective(emoticon, shortName) {
         return '<esn-emoticon emoticon="' + shortName + '"></esn-emoticon>';
       };
