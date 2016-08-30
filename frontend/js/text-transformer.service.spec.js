@@ -83,4 +83,10 @@ describe('The esnEmoticonTextTransformer service', function() {
     expect(esnEmoticonRegistryMock.get).to.have.been.calledOnce;
   });
 
+  it('should not fail for null or undefined input', function() {
+    [null, undefined].map(function(nullableString) {
+      expect(esnEmoticonTextTransformer(nullableString)).to.equal(nullableString);
+    });
+  });
+
 });
