@@ -8,7 +8,7 @@ describe.skip('The esnEmoticon run', function() {
 
   beforeEach(function() {
     angular.mock.module('linagora.esn.emoticon');
-    inject(function(_esnEmoticonRegistry_, _esnEmoticonList_) {
+    inject(function(_esnEmoticonRegistry_) {
       esnEmoticonRegistry = _esnEmoticonRegistry_;
     });
   });
