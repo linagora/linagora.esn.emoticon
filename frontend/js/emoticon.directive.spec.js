@@ -4,6 +4,7 @@ var expect = chai.expect;
 
 describe('The esnEmoticon directive', function() {
   'use strict';
+
   var element, scope, $compile, esnEmoticonRegistryMock;
 
   function compileDirective(emoticonId) {

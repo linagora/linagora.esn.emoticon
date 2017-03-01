@@ -12,8 +12,8 @@
       return esnEmoticonTextTransformer(value, function(emoticon, shortName) {
         var response = '<img src="' + esnEmoticonRegistry.getEmoticonURI(shortName) + '" title="' + shortName + '"';
 
-        Object.keys(opts).forEach(function(k) {
-          response += ' ' + k + '="' + opts[k].replace('"', '\"') + '"';
+        Object.keys(opts).forEach(function(key) {
+          response += ' ' + key + '="' + opts[key].replace(/"/g, '&quot;') + '"';
         });
         response += '>';
 

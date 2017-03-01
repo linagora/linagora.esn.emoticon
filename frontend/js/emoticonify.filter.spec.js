@@ -47,4 +47,11 @@ describe('The esnEmoticonify filter', function() {
     expect(esnEmoticonify(inputString, {class: 'bold', dump: 'true'})).to.equal(expected);
   });
 
+  it('should escape the quote character in the additional option', function() {
+    var inputString = ':+1: text :smiley:';
+    var expected = '<img src="' + lnk1 + '" title="+1" dump="too &quot;smart&quot;"> text <img src="' + lnk2 + '" title="smiley" dump="too &quot;smart&quot;">';
+
+    expect(esnEmoticonify(inputString, { dump: 'too "smart"' })).to.equal(expected);
+  });
+
 });
