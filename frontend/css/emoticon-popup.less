@@ -1,0 +1,51 @@
+.emoji-popup {
+  .flex-wrap;
+
+  width: 320px;
+  height: 200px;
+  overflow: hidden;
+
+  .form-group {
+    margin: 5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    .fg-line {
+      display: inline-flex;
+    }
+
+    i {
+      font-size: 2em;
+    }
+  }
+
+  .emoji-items {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: absolute;
+    top: 40px;
+    height: 170px;
+    width: 100%;
+  }
+
+  .esn-emoticon-image {
+    width: 27px;
+    margin: 5px;
+  }
+
+  .emoticon-search {
+    i {
+      position: absolute;
+      padding-top: 8px;
+      color: @m-blue;
+    }
+  }
+}
+
+@media (min-width: @screen-sm-min) {
+  .emoji-popup {
+    width: 350px;
+  }
+}
