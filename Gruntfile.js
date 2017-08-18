@@ -15,13 +15,30 @@ module.exports = function(grunt) {
     },
     eslint: {
       target: allFiles
+    },
+    puglint: {
+      all: {
+        options: {
+          config: {
+            disallowAttributeInterpolation: true,
+            disallowLegacyMixinCall: true,
+            validateExtensions: true,
+            validateIndentation: 2
+          }
+        },
+        src: [
+          'frontend/**/*.pug'
+        ]
+      }
     }
   });
 
   require('load-grunt-tasks')(grunt);
   grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-puglint');
 
-  grunt.registerTask('linters', ['eslint']);
+  grunt.registerTask('pug-linter', 'Check the pug/jade files', ['puglint:all']);
+  grunt.registerTask('linters', ['eslint', 'pug-linter']);
   grunt.registerTask('test-frontend', ['karma:unit']);
   grunt.registerTask('test', ['linters', 'test-frontend']);
 
