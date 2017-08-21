@@ -3,7 +3,7 @@
     .fg-line
       .emoticon-search
       i.mdi.mdi-magnify
-      input.form-control.input-sm(placeholder="#{__('Search')}", ng-model="$ctrl.emojiToSearch", autocomplete="off", autocorrect="off", autocapitalize="off", spellcheck="false")
+      input.form-control.input-sm(placeholder=__('Search'), ng-model="$ctrl.emojiToSearch", autocomplete="off", autocorrect="off", autocapitalize="off", spellcheck="false")
       i.mdi.mdi-close(ng-if="$ctrl.emojiToSearch !== ''", ng-click="$ctrl.resetField(); $event.stopPropagation();")
   div.emoji-items
     span(ng-repeat="emoticon in $ctrl.emoticonsList | filter:$ctrl.getEmojiName()")

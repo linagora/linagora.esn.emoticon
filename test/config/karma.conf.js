@@ -14,7 +14,7 @@ module.exports = function(config) {
       'node_modules/sinon/pkg/sinon.js',
       'frontend/js/**/*.module.js',
       'frontend/js/**/*.js',
-      'frontend/**/*.jade'
+      'frontend/**/*.pug'
     ],
     frameworks: ['mocha'],
     colors: true,
@@ -24,7 +24,7 @@ module.exports = function(config) {
     reporters: ['coverage', 'spec'],
     preprocessors: {
       'frontend/js/**/!(*spec).js': ['coverage'],
-      '**/*.jade': ['ng-jade2module']
+      '**/*.pug': ['ng-jade2module']
     },
 
     plugins: [
@@ -42,7 +42,7 @@ module.exports = function(config) {
     ngJade2ModulePreprocessor: {
       stripPrefix: 'frontend',
       cacheIdFromPath: function(filepath) {
-        var cacheId = filepath.replace(/jade$/, 'html').replace(/^frontend/, '/linagora.esn.emoticon');
+        var cacheId = filepath.replace(/pug$/, 'html').replace(/^frontend/, '/linagora.esn.emoticon');
 
         return cacheId;
       },
