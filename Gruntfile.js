@@ -36,6 +36,7 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-puglint');
+  grunt.loadNpmTasks('grunt-release');
 
   grunt.registerTask('pug-linter', 'Check the pug/jade files', ['puglint:all']);
   grunt.registerTask('linters', ['eslint', 'pug-linter']);
