@@ -1,0 +1,17 @@
+before_script:
+  - . ~/.nvm/nvm.sh && nvm use 8
+
+stages:
+  - release
+
+release:
+  stage: release
+  tags:
+    - shell
+    - online.net
+  only:
+    - triggers
+  script:
+    - if [ -z "${VERSION}" ]; then exit 1; fi
+    - npm i
+    - grunt release:${VERSION}
