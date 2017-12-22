@@ -1,6 +1,6 @@
 {
   "name": "linagora.esn.emoticon",
-  "version": "0.6.1-dev",
+  "version": "0.6.1",
   "description": "Emoticon support for the ESN",
   "main": "index.js",
   "scripts": {
