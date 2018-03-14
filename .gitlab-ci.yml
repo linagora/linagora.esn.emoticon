@@ -1,7 +1,8 @@
-before_script:
-  - . ~/.nvm/nvm.sh && nvm use 8
+image: linagora/node-test-base:8
 
 stages:
+  - test
+  - deploy_dev
   - release
 
 release:
@@ -12,8 +13,40 @@ release:
   only:
     - triggers
   script:
+    - . ~/.nvm/nvm.sh && nvm use 8
     - if [ -z "${VERSION}" ]; then exit 1; fi
     - npm i
     - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
     - grunt release:${VERSION}
     - git push origin "${VERSION}"
+
+test:
+  stage: test
+  tags:
+    - docker
+  script:
+    - npm i
+    - bower i --allow-root
+    - grunt --chunk=1 --ci
+
+deploy_dev:
+  stage: deploy_dev
+  tags:
+    - dev.open-paas.org
+    - deployment
+  environment:
+    name: dev
+    url: https://dev.open-paas.org
+  only:
+    - master
+  script:
+    - cd /srv/${CI_PROJECT_NAME}
+    - git fetch --all
+    - git checkout ${CI_COMMIT_SHA}
+    - npm install --production
+    - npm update --production
+    - npm prune
+    - bower install --production
+    - bower prune
+    - git checkout -- .
+    - sudo /etc/init.d/rse.dev restart
