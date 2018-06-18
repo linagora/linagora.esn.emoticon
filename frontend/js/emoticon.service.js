@@ -3,15 +3,15 @@
 
   angular.module('linagora.esn.emoticon').factory('esnEmoticonRegistry', esnEmoticonRegistry);
 
-  function esnEmoticonRegistry() {
+  function esnEmoticonRegistry(esnEmoticonCategories) {
     var emoticons = {};
 
     return {
       add: add,
       addCollection: addCollection,
       get: get,
-      getShortNames: getShortNames,
-      getEmoticonURI: getEmoticonURI
+      getEmoticonURI: getEmoticonURI,
+      getReducedEmoticons: getReducedEmoticons
     };
 
     function add(item) {
@@ -23,7 +23,8 @@
         add({
           path: collection.path,
           suffix: collection.suffix,
-          shortName: shortName
+          shortName: shortName,
+          category: esnEmoticonCategories[shortName]
         });
       });
     }
@@ -38,8 +39,17 @@
       return emoticon.path + emoticon.shortName + emoticon.suffix;
     }
 
-    function getShortNames() {
-      return Object.keys(emoticons);
+    function getReducedEmoticons() {
+      var reducedEmoticons = [];
+
+      Object.keys(emoticons).forEach(function(key) {
+        reducedEmoticons.push({
+          shortName: emoticons[key].shortName,
+          category: emoticons[key].category
+        });
+      });
+
+      return reducedEmoticons;
     }
   }
 })();

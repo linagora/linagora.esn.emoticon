@@ -7,15 +7,15 @@ var expect = chai.expect;
 
 describe('the chatBotMessageController controller', function() {
 
-  var $scope, $rootScope, $controller, esnEmoticonRegistry, EmojiShortNames;
+  var $scope, $rootScope, $controller, esnEmoticonRegistry, ReducedEmoji;
 
   beforeEach(function() {
 
-    EmojiShortNames = ['a', 'ab', 'abc'];
+    ReducedEmoji = [{shortName: 'a', category: 'ca'}, {shortName: 'ab', category: 'ca'}, {shortName: 'abc', category: 'cb'}];
 
     esnEmoticonRegistry = {
-      getShortNames: sinon.spy(function() {
-        return EmojiShortNames;
+      getReducedEmoticons: sinon.spy(function() {
+        return ReducedEmoji;
       }),
       addCollection: sinon.spy()
     };
@@ -43,13 +43,13 @@ describe('the chatBotMessageController controller', function() {
 
   describe('the $onInit function', function() {
 
-    it('should call esnEmoticonRegistry.getShortNames() method', function() {
+    it('should call esnEmoticonRegistry.getReducedEmoticons() method', function() {
       var controller = initController();
 
       controller.$onInit();
 
-      expect(esnEmoticonRegistry.getShortNames).to.have.been.calledOnce;
-      expect(controller.emoticonsList).to.deep.equal(EmojiShortNames);
+      expect(esnEmoticonRegistry.getReducedEmoticons).to.have.been.calledOnce;
+      expect(controller.emoticonsList).to.deep.equal(ReducedEmoji);
     });
   });
 
