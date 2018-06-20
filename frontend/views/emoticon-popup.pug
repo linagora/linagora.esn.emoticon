@@ -2,9 +2,26 @@
   .form-group
     .fg-line
       .emoticon-search
-      i.mdi.mdi-magnify
-      input.form-control.input-sm(placeholder=__('Search'), ng-model="$ctrl.emojiToSearch", autocomplete="off", autocorrect="off", autocapitalize="off", spellcheck="false")
-      i.mdi.mdi-close(ng-if="$ctrl.emojiToSearch !== ''", ng-click="$ctrl.resetField(); $event.stopPropagation();")
-  div.emoji-items
-    span(ng-repeat="emoticon in $ctrl.emoticonsList | filter:$ctrl.getEmojiName()")
-      esn-emoticon(emoticon="{{emoticon}}", ng-click="$ctrl.updateEmojiValue(emoticon)")
+      i.mdi.mdi-magnify(ng-click="$ctrl.resetField(); $event.stopPropagation();")
+      input.form-control.input-sm(placeholder=__(' Search'), ng-model="$ctrl.emojiToSearch", autocomplete="off", autocorrect="off", autocapitalize="off", spellcheck="false")
+      i.mdi.mdi-close.search-icon(ng-if="$ctrl.emojiToSearch !== ''", ng-click="$ctrl.resetField(); $event.stopPropagation();")
+  .category-filter
+    .filter(ng-click="$ctrl.categoryToSearch='Smileys & People'; $event.stopPropagation();",
+        class="{{$ctrl.categoryToSearch=='Smileys & People'?'active-filter':''}}")
+      esn-emoticon(emoticon="grinning")
+    .filter(ng-click="$ctrl.categoryToSearch='Animals & Nature'; $event.stopPropagation();",
+        class="{{$ctrl.categoryToSearch=='Animals & Nature'?'active-filter':''}}")
+      esn-emoticon(emoticon="tulip")
+    .filter(ng-click="$ctrl.categoryToSearch='Travel & Places'; $event.stopPropagation();",
+        class="{{$ctrl.categoryToSearch=='Travel & Places'?'active-filter':''}}")
+      esn-emoticon(emoticon="airplane")
+    .filter(ng-click="$ctrl.categoryToSearch='Food & Objects'; $event.stopPropagation();",
+        class="{{$ctrl.categoryToSearch=='Food & Objects'?'active-filter':''}}")
+      esn-emoticon(emoticon="green_apple")
+    .filter(ng-click="$ctrl.categoryToSearch='Symbols'; $event.stopPropagation();",
+        class="{{$ctrl.categoryToSearch=='Symbols'?'active-filter':''}}")
+      esn-emoticon(emoticon="hundred_points")
+      
+  .emoji-items
+    span(ng-repeat="emoticon in $ctrl.emoticonsList | filter:{shortName:$ctrl.getEmojiName(), category:$ctrl.getCategory()}")
+      esn-emoticon(emoticon="{{emoticon.shortName}}", ng-click="$ctrl.updateEmojiValue(emoticon.shortName)")

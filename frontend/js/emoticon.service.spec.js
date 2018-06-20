@@ -4,12 +4,18 @@ var expect = chai.expect;
 describe('The esnEmoticon service', function() {
   'use strict';
 
-  var esnEmoticonRegistry;
+  var esnEmoticonRegistry, esnEmoticonCategories;
 
   beforeEach(function() {
+    esnEmoticonCategories = {
+      airplane: 'Travel',
+      grinning: 'Smiley'
+    };
+
     angular.mock.module('linagora.esn.emoticon');
     angular.mock.module(function($provide) {
       $provide.value('esnEmoticonList', []);
+      $provide.value('esnEmoticonCategories', esnEmoticonCategories);
     });
     inject(function(_esnEmoticonRegistry_) {
       esnEmoticonRegistry = _esnEmoticonRegistry_;
@@ -22,29 +28,34 @@ describe('The esnEmoticon service', function() {
       var collection = {
         path: '/emoticons/',
         suffix: '.png',
-        shortNames: ['+1', 'smile']
+        shortNames: ['airplane', 'grinning']
       };
 
       esnEmoticonRegistry.addCollection(collection);
 
-      expect(esnEmoticonRegistry.get('+1')).to.exist;
-      expect(esnEmoticonRegistry.get('smile')).to.exist;
+      expect(esnEmoticonRegistry.get('airplane')).to.exist;
+      expect(esnEmoticonRegistry.get('grinning')).to.exist;
     });
 
-    it('should return an array of the registered shortnames', function() {
+    it('should return an array of the registered shortnames and categories', function() {
       var collection = {
         path: '/emoticons/',
         suffix: '.png',
-        shortNames: ['+1', 'smile']
+        shortNames: ['airplane', 'grinning']
       };
+
+      var expectedResult = [
+        {shortName: 'airplane', category: 'Travel'},
+        {shortName: 'grinning', category: 'Smiley'}
+      ];
 
       esnEmoticonRegistry.addCollection(collection);
 
-      expect(esnEmoticonRegistry.getShortNames()).to.deep.equal(collection.shortNames);
+      expect(esnEmoticonRegistry.getReducedEmoticons()).to.deep.equal(expectedResult);
     });
 
     it('should return a registered emoticon', function() {
-      var shortName = '+1';
+      var shortName = 'airplane';
       var emoticon = {
         path: '/emoticons/',
         suffix: '.png',
@@ -56,7 +67,7 @@ describe('The esnEmoticon service', function() {
     });
 
     it('should generate the emoticon path', function() {
-      var shortName = '+1';
+      var shortName = 'airplane';
       var emoticon = {
         path: '/emoticons/',
         suffix: '.png',

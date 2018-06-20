@@ -38,7 +38,7 @@ deploy_dev:
     name: dev
     url: https://dev.open-paas.org
   only:
-    - master
+    - master@linagora/lgs/openpaas/linagora.esn.emoticon
   script:
     - cd /srv/${CI_PROJECT_NAME}
     - git fetch --all
