@@ -5,7 +5,7 @@
 
 var expect = chai.expect;
 
-describe('the chatBotMessageController controller', function() {
+describe('the emoticon-popup controller', function() {
 
   var $scope, $rootScope, $controller, esnEmoticonRegistry, ReducedEmoji;
 
@@ -14,9 +14,7 @@ describe('the chatBotMessageController controller', function() {
     ReducedEmoji = [{shortName: 'a', category: 'ca'}, {shortName: 'ab', category: 'ca'}, {shortName: 'abc', category: 'cb'}];
 
     esnEmoticonRegistry = {
-      getReducedEmoticons: sinon.spy(function() {
-        return ReducedEmoji;
-      }),
+      getReducedEmoticons: sinon.stub().returns(ReducedEmoji),
       addCollection: sinon.spy()
     };
 
