@@ -5,9 +5,12 @@
   height: 209px;
   overflow: hidden;
 
+  @light-gray: #e0e0e0;
+  @background-gray: #e9ebee;
+
   .form-group {
     margin: 5px;
-    margin-bottom: 0px;
+    margin-bottom: 0;
     position: absolute;
     top: 0;
     right: 0;
@@ -25,8 +28,8 @@
   }
 
   .category-filter {
-    border-right: 1px solid #e0e0e0;
-    border-top: 1px solid #e0e0e0;
+    border-right: 1px solid @light-gray;
+    border-top: 1px solid @light-gray;
     position: absolute;
     top: 34px;
   }
@@ -34,12 +37,12 @@
   .filter {
     height: 37px;
     padding-bottom: -1px;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid @light-gray;
 
   }
   
   .active-filter {
-    box-shadow: inset 0px 0px 4px 0px #e0e0e0
+    background-color: @background-gray;
   }
 
   .emoji-items {
@@ -48,7 +51,6 @@
     position: absolute;
     top: 34px;
     height: 170px;
-    /* width: 86%; */
     height: 185px;
     width: 280px;
     left:40px;
@@ -70,6 +72,6 @@
 
 @media (min-width: @screen-sm-min) {
   .emoji-popup {
-    width: 350px;
+    width: 320px;
   }
 }
