@@ -11,7 +11,8 @@
       addCollection: addCollection,
       get: get,
       getEmoticonURI: getEmoticonURI,
-      getReducedEmoticons: getReducedEmoticons
+      getReducedEmoticons: getReducedEmoticons,
+      getShortNames: getShortNames
     };
 
     function add(item) {
@@ -31,6 +32,10 @@
 
     function get(shortName) {
       return emoticons[shortName];
+    }
+
+    function getShortNames() {
+      return Object.keys(emoticons);
     }
 
     function getEmoticonURI(shortName) {
