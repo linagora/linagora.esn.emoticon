@@ -21,7 +21,6 @@
     .filter(ng-click="$ctrl.categoryToSearch='Symbols'; $event.stopPropagation();",
         class="{{$ctrl.categoryToSearch=='Symbols'?'active-filter':''}}")
       esn-emoticon(emoticon="hundred_points")
-      
   .emoji-items
     span(ng-repeat="emoticon in $ctrl.emoticonsList | filter:{shortName:$ctrl.getEmojiName(), category:$ctrl.getCategory()}")
       esn-emoticon(emoticon="{{emoticon.shortName}}", ng-click="$ctrl.updateEmojiValue(emoticon.shortName)")
