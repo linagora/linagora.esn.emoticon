@@ -1,3 +1,5 @@
+![Archived](https://img.shields.io/badge/Current_Status-archived-blue?style=flat)
+
 # linagora.esn.emoticon
 
 Adds Emoticon support into the OpenPaaS Enterprise Social Network. This module is part of https://open-paas.org/.
